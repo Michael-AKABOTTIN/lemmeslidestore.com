@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LEMME SLIDE | Roblox Botting Service</title>
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#eaf2ff;--text:#0a1f44;--muted:#3b5588;--blue:#1e6bff;--blue2:#0b3fb8;--card:rgba(255,255,255,.9);--line:#b9d0ff;--word:rgba(30,107,255,.13);--solid:#fff;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#06142e;--text:#eaf2ff;--muted:#9db8ee;--blue:#3d86ff;--blue2:#1e6bff;--card:rgba(10,30,70,.85);--line:#1d3f87;--word:rgba(61,134,255,.16);--solid:#0a1e46}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#06142e;--text:#eaf2ff;--muted:#9db8ee;--blue:#3d86ff;--blue2:#1e6bff;--card:rgba(10,30,70,.85);--line:#1d3f87;--word:rgba(61,134,255,.16);--solid:#0a1e46}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow-x:hidden}
+#bg{position:fixed;inset:-20%;z-index:0;transform:rotate(-12deg);pointer-events:none;user-select:none;font-weight:900;font-size:clamp(40px,8vw,96px);line-height:1.05;color:var(--word);letter-spacing:2px;white-space:nowrap;overflow:hidden}
+#bg div:nth-child(even){transform:translateX(-120px)}
+main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:24px 20px 60px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:8px 0 40px}
+.logo{font-weight:900;font-size:22px;color:var(--blue);letter-spacing:1px}
+.hero{text-align:center;padding:30px 0 40px}
+.hero h1{font-size:clamp(34px,7vw,64px);margin:0 0 12px;line-height:1.05}
+.hero h1 span{color:var(--blue)}
+.hero p{color:var(--muted);font-size:18px;max-width:560px;margin:0 auto 26px}
+.btn{display:inline-block;border:0;cursor:pointer;font:inherit;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;text-decoration:none;padding:12px 24px;border-radius:12px;font-weight:700;box-shadow:0 8px 24px rgba(30,107,255,.3)}
+.btn.sm{padding:8px 14px;font-size:14px;box-shadow:none}
+.btn.ghost{background:transparent;color:var(--blue);border:1px solid var(--blue);box-shadow:none}
+h2{text-align:center;font-size:30px;margin:50px 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;backdrop-filter:blur(6px)}
+.card h3{margin:0 0 8px;color:var(--blue)}
+.card p{margin:0;color:var(--muted)}
+.price{font-size:34px;font-weight:900;margin:8px 0}
+.price small{font-size:14px;color:var(--muted);font-weight:500}
+.card ul{padding-left:18px;color:var(--muted);margin:10px 0 16px}
+.featured{border:2px solid var(--blue)}
+#plans .card{display:flex;flex-direction:column}
+#plans .btn{margin-top:auto}
+.stock .card{text-align:center}
+.num{font-size:42px;font-weight:900;color:var(--blue);margin:6px 0}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--blue2));transition:width 1s}
+.tag{display:inline-block;margin-top:10px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:rgba(30,107,255,.15);color:var(--blue)}
+.tag.low{background:rgba(255,160,0,.18);color:#d98200}
+.tag.out{background:rgba(255,60,60,.18);color:#e03030}
+.cta{text-align:center;margin-top:50px}
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:50px}
+.ov{position:fixed;inset:0;z-index:50;background:rgba(3,10,30,.65);display:none;align-items:center;justify-content:center;padding:16px}
+.ov.open{display:flex}
+.box{position:relative;background:var(--solid);color:var(--text);border:1px solid var(--line);border-radius:18px;padding:24px;width:100%;max-width:440px;max-height:90vh;overflow:auto}
+.box h3{margin:0 0 4px;color:var(--blue)}
+.x{position:absolute;top:10px;right:14px;background:none;border:0;font-size:26px;color:var(--muted);cursor:pointer}
+.pm{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.pm button{padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--text);font:inherit;cursor:pointer}
+.pm button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.pd{background:var(--bg);border-radius:12px;padding:14px;margin-bottom:12px;color:var(--muted);white-space:pre-wrap;word-break:break-word}
+.steps{color:var(--muted);font-size:14px;padding-left:18px}
+#ownerbtn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40}
+#admin .box{max-width:760px}
+#admin h4{margin:18px 0 8px}
+.row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px;align-items:center}
+.row input[type=text],.row input:not([type]){flex:1 1 110px;min-width:80px;padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit}
+.row label{font-size:13px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div id="bg" aria-hidden="true"></div>
+<main>
+  <nav><div class="logo">LEMME SLIDE</div><a class="btn sm" href="#pricing">Order</a></nav>
+  <section class="hero">
+    <h1>Roblox <span>Botting</span> Service</h1>
+    <p>Fast delivery, simple pricing, and support when you need it.</p>
+    <a class="btn" href="#pricing">View Packages</a>
+  </section>
+  <section>
+    <h2>Services</h2>
+    <div class="grid">
+      <div class="card"><h3>Game Visits</h3><p>Boost the visit count on your experience.</p></div>
+      <div class="card"><h3>Followers</h3><p>Grow your profile follower count.</p></div>
+      <div class="card"><h3>Favorites</h3><p>Add favorites to your game page.</p></div>
+    </div>
+  </section>
+  <section class="stock"><h2>Stock Count</h2><div class="grid" id="stock"></div></section>
+  <section id="pricing"><h2>Pricing</h2><div class="grid" id="plans"></div></section>
+  <section class="cta"><h2>Ready to slide?</h2><a class="btn" id="dc" href="#">Join our Discord</a></section>
+  <footer>© 2026 LEMME SLIDE. Not affiliated with Roblox Corporation.</footer>
+</main>
+<script type="application/json" id="state">{"stock":[{"name":"Followers","count":25000,"max":50000},{"name":"Game Visits","count":120000,"max":200000},{"name":"Favorites","count":3500,"max":20000}],"plans":[{"name":"Starter","price":"5","qty":"1,000","feat":"Slow, steady delivery, Email support","hot":false},{"name":"Pro","price":"20","qty":"5,000","feat":"Faster delivery, Priority support","hot":true},{"name":"Max","price":"35","qty":"10,000","feat":"Fastest delivery, Dedicated support","hot":false}],"pay":[{"name":"GCash","details":"Number: 09XX XXX XXXX\nName: YOUR NAME","link":""},{"name":"PayPal","details":"paypal.me/yourname","link":""},{"name":"Card","details":"Pay securely with credit or debit card.","link":""},{"name":"Crypto (USDT)","details":"Network: TRC20\nAddress: YOUR_WALLET_ADDRESS","link":""}],"discord":""}</script>
+<script>
+var S=JSON.parse(document.getElementById('state').textContent);
+var $=function(i){return document.getElementById(i)};
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function mk(id,cls){var d=document.createElement('div');d.id=id;d.className=cls;document.body.appendChild(d);return d}
+function dcLink(){return S.discord||'#'}
+
+function renderStock(){
+  $('stock').innerHTML=S.stock.map(function(s){
+    var pct=s.max?Math.min(100,Math.round(s.count/s.max*100)):0;
+    var st=s.count<=0?['Out of stock','out']:pct<20?['Low stock','low']:['In stock',''];
+    return '<div class="card"><h3>'+esc(s.name)+'</h3><div class="num" data-n="'+s.count+'">0</div><div>available</div><div class="bar"><i data-w="'+pct+'"></i></div><span class="tag '+st[1]+'">'+st[0]+'</span></div>';
+  }).join('');
+  document.querySelectorAll('#stock .num').forEach(function(n){
+    var t=+n.dataset.n,c=0,step=Math.max(1,Math.ceil(t/60));
+    var iv=setInterval(function(){c=Math.min(t,c+step);n.textContent=c.toLocaleString('en-US');if(c>=t)clearInterval(iv)},16);
+  });
+  setTimeout(function(){document.querySelectorAll('#stock .bar i').forEach(function(b){b.style.width=b.dataset.w+'%'})},100);
+}
+function renderPlans(){
+  $('plans').innerHTML=S.plans.map(function(p,i){
+    var li=String(p.feat).split(',').map(function(f){return f.trim()}).filter(Boolean).map(function(f){return '<li>'+esc(f)+'</li>'}).join('');
+    return '<div class="card'+(p.hot?' featured':'')+'"><h3>'+esc(p.name)+'</h3><div class="price">$'+esc(p.price)+' <small>/ '+esc(p.qty)+'</small></div><ul>'+li+'</ul><button class="btn" data-i="'+i+'">Buy now</button></div>';
+  }).join('');
+  $('dc').href=dcLink();
+}
+var pay=mk('modal','ov');
+function openPay(i){
+  var p=S.plans[i];
+  pay.innerHTML='<div class="box"><button class="x" data-x="1" aria-label="Close">×</button><h3>Order: '+esc(p.name)+'</h3><div>$'+esc(p.price)+' for '+esc(p.qty)+'</div><p class="note" style="margin:14px 0 0">Choose a payment method</p><div class="pm">'+S.pay.map(function(m,j){return '<button data-m="'+j+'">'+esc(m.name)+'</button>'}).join('')+'</div><div id="pd"></div></div>';
+  pay.classList.add('open');
+}
+function showMethod(j){
+  var m=S.pay[j];
+  document.querySelectorAll('.pm button').forEach(function(b,k){b.classList.toggle('on',k===j)});
+  $('pd').innerHTML='<div class="pd">'+esc(m.details)+'</div>'+(m.link?'<p><a class="btn" target="_blank" rel="noopener" href="'+esc(m.link)+'">Pay with '+esc(m.name)+'</a></p>':'')+'<ol class="steps"><li>Send the exact amount.</li><li>Screenshot your receipt.</li><li>Send it with your Roblox username or game link on Discord.</li></ol><a class="btn" style="width:100%;text-align:center" target="_blank" rel="noopener" href="'+esc(dcLink())+'">If you continue to buy, Please make a ticket in our discord</a>';
+}
+pay.onclick=function(e){
+  var t=e.target;
+  if(t===pay||t.dataset.x)pay.classList.remove('open');
+  else if(t.dataset.m!==undefined)showMethod(+t.dataset.m);
+};
+$('plans').onclick=function(e){if(e.target.dataset.i!==undefined)openPay(+e.target.dataset.i)};
+
+renderStock();renderPlans();
+(function(){var h='',r='LEMME SLIDE   ';for(var i=0;i<24;i++)h+='<div>'+r.repeat(10)+'</div>';$('bg').innerHTML=h})();
+
+/* ---------- Owner mode (real owner check, only the owner sees this) ---------- */
+var D,adm;
+function inp(path,v,ph){return '<input data-p="'+path+'" value="'+esc(v)+'" placeholder="'+ph+'" title="'+ph+'">'}
+function renderAdmin(){
+  var h='<div class="box"><button class="x" data-a="close" aria-label="Close">×</button><h3>Owner panel</h3><p class="note">Edit anything, then press Save &amp; publish. The live site updates for everyone.</p>';
+  h+='<h4>Stock (name, available, max)</h4>'+D.stock.map(function(s,i){return '<div class="row">'+inp('stock.'+i+'.name',s.name,'Name')+inp('stock.'+i+'.count',s.count,'Available')+inp('stock.'+i+'.max',s.max,'Max')+'</div>'}).join('');
+  h+='<h4>Packages</h4>'+D.plans.map(function(p,i){return '<div class="row">'+inp('plans.'+i+'.name',p.name,'Name')+inp('plans.'+i+'.price',p.price,'Price (USD)')+inp('plans.'+i+'.qty',p.qty,'Amount')+inp('plans.'+i+'.feat',p.feat,'Features, comma separated')+'<label><input type="checkbox" data-h="'+i+'"'+(p.hot?' checked':'')+'> Featured</label><button class="btn ghost sm" data-a="delplan" data-i="'+i+'">Remove</button></div>'}).join('')+'<button class="btn ghost sm" data-a="addplan">+ Add package</button>';
+  h+='<h4>Payment methods</h4>'+D.pay.map(function(m,i){return '<div class="row">'+inp('pay.'+i+'.name',m.name,'Method name')+inp('pay.'+i+'.details',m.details,'Account details shown to buyers')+inp('pay.'+i+'.link',m.link,'Payment link (optional)')+'<button class="btn ghost sm" data-a="delpay" data-i="'+i+'">Remove</button></div>'}).join('')+'<button class="btn ghost sm" data-a="addpay">+ Add method</button>';
+  h+='<h4>Discord invite link</h4><div class="row">'+inp('discord',D.discord,'https://discord.gg/...')+'</div>';
+  h+='<p class="note">Payment details are public to every visitor. Only add details you are happy to share.</p><p><button class="btn" data-a="save">Save &amp; publish</button> <span class="note" id="amsg"></span></p></div>';
+  adm.innerHTML=h;
+}
+function setPath(path,v){
+  var p=path.split('.'),o=D;for(var i=0;i<p.length-1;i++)o=o[p[i]];
+  var k=p[p.length-1];o[k]=(typeof o[k]==='number')?(+v||0):v;
+}
+async function save(){
+  var m=$('amsg');
+  try{
+    var a=window.claude&&await claude.use('artifact');
+    if(!a){m.textContent='Publishing is not available here.';return}
+    S=JSON.parse(JSON.stringify(D));
+    var c=document.documentElement.cloneNode(true);
+    ['stock','plans','bg'].forEach(function(id){c.querySelector('#'+id).innerHTML=''});
+    ['modal','admin','ownerbtn'].forEach(function(id){var e=c.querySelector('#'+id);if(e)e.remove()});
+    c.querySelector('#state').textContent=JSON.stringify(S).replace(/</g,'\\u003c');
+    m.textContent='Publishing...';
+    await a.publish('<!DOCTYPE html>\n'+c.outerHTML);
+  }catch(e){m.textContent='Could not publish: '+((e&&e.message)||e)}
+}
+function startOwner(){
+  adm=mk('admin','ov');
+  var b=document.createElement('button');b.id='ownerbtn';b.className='btn';b.textContent='Owner panel';document.body.appendChild(b);
+  b.onclick=function(){D=JSON.parse(JSON.stringify(S));renderAdmin();adm.classList.add('open')};
+  adm.oninput=function(e){var t=e.target;if(t.dataset.p)setPath(t.dataset.p,t.value);else if(t.dataset.h!==undefined)D.plans[+t.dataset.h].hot=t.checked};
+  adm.onclick=function(e){
+    var t=e.target,a=t.dataset.a;if(t===adm||a==='close'){adm.classList.remove('open');return}
+    if(!a)return;
+    if(a==='addplan')D.plans.push({name:'New',price:'0',qty:'1,000',feat:'',hot:false});
+    else if(a==='delplan')D.plans.splice(+t.dataset.i,1);
+    else if(a==='addpay')D.pay.push({name:'New method',details:'',link:''});
+    else if(a==='delpay')D.pay.splice(+t.dataset.i,1);
+    else if(a==='save'){save();return}
+    renderAdmin();
+  };
+}
+(async function(){
+  try{
+    if(!window.claude||!claude.use)return;
+    var u=await claude.use('user');
+    if(u&&u.isOwner())startOwner();
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
